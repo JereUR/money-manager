@@ -1,7 +1,7 @@
 <h1 align="center">Gestor Financiero con React.js y Node.js</h1>
 
 <p align="center">
-  <img src="./logo.jpeg" alt="Logo de la Aplicación" />
+  <img src="./logo.jpeg" alt="Logo de la Aplicación" width="200"/>
 </p>
 
 <p align="center">
