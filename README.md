@@ -23,3 +23,4 @@
 
 - **Frontend:** React.js, HTML, CSS
 - **Backend:** Node.js, Express
+- **Base de Datos:** MongoDB
