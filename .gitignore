@@ -6,3 +6,4 @@ Backend Folders/Files
 Frontend Folders/Files
 
 /frontend/node_modules
+/backend/.env.local
