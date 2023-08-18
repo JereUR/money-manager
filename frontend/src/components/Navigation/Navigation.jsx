@@ -1,9 +1,11 @@
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
+
 import avatar from '../../img/avatar.png'
 import { menuItems } from '../../utils/menuItmes'
 import { signout } from '../../utils/Icons'
 
-export default function Navigation() {
+export default function Navigation({ active, setActive }) {
   return (
     <NavStyled>
       <div className="user-con">
@@ -16,7 +18,11 @@ export default function Navigation() {
       <ul className="menu-items">
         {menuItems.map((item) => {
           return (
-            <li key={item.id}>
+            <li
+              key={item.id}
+              onClick={() => setActive(item.id)}
+              className={active === item.id ? 'active' : ''}
+            >
               {item.icon}
               <span>{item.title}</span>
             </li>
@@ -28,6 +34,11 @@ export default function Navigation() {
       </div>
     </NavStyled>
   )
+}
+
+Navigation.propTypes = {
+  active: PropTypes.number.isRequired,
+  setActive: PropTypes.func.isRequired
 }
 
 const NavStyled = styled.nav`
@@ -91,6 +102,25 @@ const NavStyled = styled.nav`
         font-size: 1.4rem;
         transition: all 0.4s ease-in-out;
       }
+    }
+  }
+
+  .active {
+    color: rgba(34, 34, 96, 1) !important;
+
+    i {
+      color: rgba(34, 34, 96, 1) !important;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: #222260;
+      border-radius: 0 10px 10px 0;
     }
   }
 `
