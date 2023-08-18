@@ -1,8 +1,11 @@
 import styled from 'styled-components'
 
 import { InnerLayout } from '../../styles/Layout'
+import { useGlobalContext } from '../../context/globalContext'
 
 export default function Incomes() {
+  const { addIncome } = useGlobalContext()
+
   return (
     <IncomesStyled>
       <InnerLayout>
