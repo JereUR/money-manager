@@ -30,7 +30,7 @@ export default function Navigation({ active, setActive }) {
         })}
       </ul>
       <div className="bottom-nav">
-        <li>{signout} Sign Out</li>
+        <li>{signout} Cerrar Sesión</li>
       </div>
     </NavStyled>
   )
