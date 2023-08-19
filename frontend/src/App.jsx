@@ -11,7 +11,7 @@ import Expenses from './components/Expenses/Expenses'
 import { useGlobalContext } from './context/globalContext'
 
 function App() {
-  const [active, setActive] = useState(1)
+  const [active, setActive] = useState(3)
 
   const global = useGlobalContext()
 
