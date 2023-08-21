@@ -15,7 +15,7 @@ const initialData = {
 }
 
 export default function Form() {
-  const { addIncome } = useGlobalContext()
+  const { addIncome, getIncomes } = useGlobalContext()
   const [inputState, setInputState] = useState(initialData)
 
   const { title, amount, date, category, description } = inputState
@@ -30,6 +30,8 @@ export default function Form() {
     e.preventDefault()
 
     addIncome(inputState)
+    setInputState(initialData)
+    getIncomes()
   }
 
   return (
@@ -113,6 +115,7 @@ const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  margin-top: 2rem;
 
   input,
   textarea,
@@ -123,14 +126,14 @@ const FormStyled = styled.form`
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    border: 2px solid #fff;
+    border: 2px solid var(--primary-color3);
     background: transparent;
     resize: none;
-    box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 1px 15px rgba(158, 157, 157, 0.6);
     color: rgba(34, 34, 96, 0.9);
 
     &::placeholder {
-      color: rgba(34, 34, 96, 0.4);
+      color: rgba(34, 34, 96, 0.7);
     }
   }
 
@@ -140,13 +143,16 @@ const FormStyled = styled.form`
     }
 
     #date {
-      min-width: 100%;
+      width: 140%;
     }
   }
 
   .selects {
+    display: flex;
+    justify-content: flex-end;
+
     select {
-      color: rgba(34, 34, 96, 0.4);
+      color: rgba(34, 34, 96, 0.7);
 
       &:focus,
       &:active {
@@ -161,7 +167,6 @@ const FormStyled = styled.form`
       transition: all 0.3s ease-in-out;
 
       &:hover {
-        cursor: pointer;
         background: var(--color-green) !important;
       }
     }
