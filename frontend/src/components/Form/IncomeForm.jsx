@@ -14,7 +14,7 @@ const initialData = {
   description: ''
 }
 
-export default function Form() {
+export default function IncomeForm() {
   const { addIncome, getIncomes } = useGlobalContext()
   const [inputState, setInputState] = useState(initialData)
 
@@ -41,7 +41,7 @@ export default function Form() {
           type="text"
           value={title}
           name="title"
-          placeholder="Nombre de Ingreso"
+          placeholder="Nombre del Ingreso"
           onChange={handleInput('title')}
         />
       </div>
@@ -50,7 +50,7 @@ export default function Form() {
           type="number"
           value={amount}
           name="amount"
-          placeholder="Total de Ingreso"
+          placeholder="Total del Ingreso"
           onChange={handleInput('amount')}
         />
       </div>
@@ -103,7 +103,7 @@ export default function Form() {
           icon={plus}
           bPad={'.8rem 1.6rem'}
           bRad={'30px'}
-          bg={'var(--color-accept)'}
+          bg={'var(--color-accent)'}
           color={'#fff'}
         />
       </div>
@@ -126,10 +126,10 @@ const FormStyled = styled.form`
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    border: 2px solid var(--primary-color3);
+    border: 2px solid var(--border-color);
     background: transparent;
     resize: none;
-    box-shadow: 0px 1px 15px rgba(158, 157, 157, 0.6);
+    box-shadow: 0px 1px 15px rgba(158, 157, 157, 0.4);
     color: rgba(34, 34, 96, 0.9);
 
     &::placeholder {
