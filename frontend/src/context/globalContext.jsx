@@ -11,12 +11,13 @@ export const GlobalProvider = ({ children }) => {
   const [expenses, setExpenses] = useState([])
   const [error, setError] = useState(null)
 
+  //Incomes
+
   const addIncome = async (income) => {
-    const response = await axios
-      .post(`${BASE_URL}add-income`, income)
-      .catch((err) => {
-        setError(err.response.data.message)
-      })
+    await axios.post(`${BASE_URL}add-income`, income).catch((err) => {
+      setError(err.response.data.message)
+    })
+    getIncomes()
   }
 
   const getIncomes = async () => {
@@ -24,20 +25,61 @@ export const GlobalProvider = ({ children }) => {
     setIncomes(response.data)
   }
 
-  /* const addExpense = async (expense) => {
-    const response = await axios
-      .post(`${BASE_URL}add-expense`, expense)
-      .catch((err) => {
-        setError(err.response.data.message)
-      })
-  } */
+  const deleteIncome = async (id) => {
+    await axios.delete(`${BASE_URL}delete-income/${id}`)
+    getIncomes()
+  }
+
+  const totalIncome = () => {
+    let totalInc = 0
+    incomes.forEach((income) => {
+      totalInc += income.amount
+    })
+
+    return totalInc
+  }
+
+  //Expenses
+
+  const addExpense = async (expense) => {
+    await axios.post(`${BASE_URL}add-expense`, expense).catch((err) => {
+      setError(err.response.data.message)
+    })
+    getExpenses()
+  }
+
+  const getExpenses = async () => {
+    const response = await axios.get(`${BASE_URL}get-expenses`)
+    setExpenses(response.data)
+  }
+
+  const deleteExpense = async (id) => {
+    await axios.delete(`${BASE_URL}delete-expense/${id}`)
+    getExpenses()
+  }
+
+  const totalExpense = () => {
+    let totalExp = 0
+    expenses.forEach((expense) => {
+      totalExp += expense.amount
+    })
+
+    return totalExp
+  }
 
   return (
     <GlobalContext.Provider
       value={{
         addIncome,
         getIncomes,
-        incomes
+        incomes,
+        deleteIncome,
+        totalIncome,
+        addExpense,
+        getExpenses,
+        expenses,
+        deleteExpense,
+        totalExpense
       }}
     >
       {children}
