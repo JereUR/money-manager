@@ -19,9 +19,9 @@ export default function Button({ name, icon, onClick, bg, bPad, color, bRad }) {
 }
 
 Button.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   icon: PropTypes.object.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   bg: PropTypes.string.isRequired,
   bPad: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
@@ -36,4 +36,5 @@ const ButtonStyled = styled.button`
   font-size: inherit;
   gap: 0.5rem;
   outline: none;
+  cursor: pointer;
 `
