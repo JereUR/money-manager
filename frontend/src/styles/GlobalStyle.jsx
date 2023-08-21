@@ -12,10 +12,11 @@ export const GlobalStyle = createGlobalStyle`
   --primary-color:#222260;
   --primary-color2:rgba(34, 34, 96, 0.8);
   --primary-color3:rgba(34, 34, 96, 0.4);
-  --color-green:#42AD00;
+  --border-color:rgba(182, 182, 197, 0.7);
+  --color-green:#66b436;
   --color-grey:#aaa;
-  --color-accept:#F56692;
-  --color-delete:#FF0000;
+  --color-accent:#F56692;
+  --color-delete:#e20d0d;
 }
 
 body{
@@ -23,5 +24,9 @@ body{
   font-size: clamp(1rem,1.5vw,1.2rem);
   overflow: hidden;
   color: var(--primary-color2)
+}
+
+h1,h2,h3,h4,h5,h6{
+  color: var(--primary-color);
 }
 `
