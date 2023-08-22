@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { useGlobalContext } from '../../context/globalContext'
@@ -17,8 +17,47 @@ const initialData = {
 export default function IncomeForm() {
   const { addIncome, getIncomes } = useGlobalContext()
   const [inputState, setInputState] = useState(initialData)
+  const [error, setError] = useState({})
 
   const { title, amount, date, category, description } = inputState
+
+  const validation = () => {
+    let err = {}
+
+    if (inputState.title.length > 50) {
+      err.title = 'El título no puede tener más de 50 caracteres.'
+    }
+
+    if (inputState.title === '') {
+      err.title = 'Ingrese un título.'
+    }
+
+    if (inputState.amount.length > 20) {
+      err.title = 'El gasto no puede tener más de 20 caracteres.'
+    }
+
+    if (inputState.amount === '') {
+      err.amount = 'Ingrese un gasto.'
+    }
+
+    if (inputState.date === '') {
+      err.date = 'Ingrese una fecha.'
+    }
+
+    if (inputState.category === '') {
+      err.category = 'Seleccione una categoría.'
+    }
+
+    if (inputState.description.length > 30) {
+      err.title = 'La descripción no puede tener más de 30 caracteres.'
+    }
+
+    if (inputState.description === '') {
+      err.description = 'Ingrese una descripción.'
+    }
+
+    return err
+  }
 
   const handleInput =
     (name) =>
@@ -29,9 +68,15 @@ export default function IncomeForm() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    addIncome(inputState)
-    setInputState(initialData)
-    getIncomes()
+    const err = validation()
+    setError(err)
+
+    if (Object.keys(err).length === 0) {
+      addIncome(inputState)
+      setInputState(initialData)
+      getIncomes()
+      setError({})
+    }
   }
 
   return (
@@ -44,6 +89,7 @@ export default function IncomeForm() {
           placeholder="Nombre del Ingreso"
           onChange={handleInput('title')}
         />
+        {error.title && <span>{error.title}</span>}
       </div>
       <div className="input-control">
         <input
@@ -53,6 +99,7 @@ export default function IncomeForm() {
           placeholder="Total del Ingreso"
           onChange={handleInput('amount')}
         />
+        {error.amount && <span>{error.amount}</span>}
       </div>
       <div className="input-control">
         <DatePicker
@@ -64,6 +111,7 @@ export default function IncomeForm() {
             setInputState({ ...inputState, date: date })
           }}
         />
+        {error.date && <span>{error.date}</span>}
       </div>
       <div className="selects input-control">
         <select
@@ -71,7 +119,6 @@ export default function IncomeForm() {
           id="category"
           value={category}
           onChange={handleInput('category')}
-          required
         >
           <option value="" disabled>
             Seleccione una Opción
@@ -85,6 +132,7 @@ export default function IncomeForm() {
           <option value="youtube">Youtube/Stream</option>
           <option value="other">Otros</option>
         </select>
+        {error.category && <span>{error.category}</span>}
       </div>
       <div className="input-control">
         <textarea
@@ -96,6 +144,7 @@ export default function IncomeForm() {
           rows="4"
           onChange={handleInput('description')}
         ></textarea>
+        {error.description && <span>{error.description}</span>}
       </div>
       <div className="submit-btn">
         <Button
@@ -110,6 +159,18 @@ export default function IncomeForm() {
     </FormStyled>
   )
 }
+
+const shake = keyframes`
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20%, 60%{
+    transform: translateX(-5px);
+  }
+  40%, 80% {
+    transform: translateX(5px);
+  }
+  `
 
 const FormStyled = styled.form`
   display: flex;
@@ -138,12 +199,18 @@ const FormStyled = styled.form`
   }
 
   .input-control {
+    display: flex;
+    flex-direction: column;
+
     input {
       width: 100%;
     }
 
-    #date {
-      width: 140%;
+    span {
+      font-size: 14px;
+      margin-left: 1rem;
+      color: var(--color-delete);
+      animation: ${shake} 0.6s;
     }
   }
 
