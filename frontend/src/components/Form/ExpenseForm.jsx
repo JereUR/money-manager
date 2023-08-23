@@ -2,6 +2,8 @@ import { useState } from 'react'
 import styled, { keyframes } from 'styled-components'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import esLocale from 'date-fns/locale/es'
+
 import { useGlobalContext } from '../../context/globalContext'
 import Button from '../Button/Button'
 import { plus } from '../../utils/Icons'
@@ -33,7 +35,7 @@ export default function ExpenseForm() {
     }
 
     if (inputState.amount.length > 20) {
-      err.title = 'El gasto no puede tener más de 20 caracteres.'
+      err.amount = 'El gasto no puede tener más de 20 caracteres.'
     }
 
     if (inputState.amount === '') {
@@ -49,7 +51,7 @@ export default function ExpenseForm() {
     }
 
     if (inputState.description.length > 30) {
-      err.title = 'La descripción no puede tener más de 30 caracteres.'
+      err.description = 'La descripción no puede tener más de 30 caracteres.'
     }
 
     if (inputState.description === '') {
@@ -106,6 +108,7 @@ export default function ExpenseForm() {
           id="date"
           placeholderText="Fecha"
           selected={date}
+          locale={esLocale}
           dateExpenseFormat="dd/MM/yyyy"
           onChange={(date) => {
             setInputState({ ...inputState, date: date })

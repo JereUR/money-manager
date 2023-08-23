@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 import { InnerLayout } from '../../styles/Layout'
 import { useGlobalContext } from '../../context/globalContext'
-import Form from '../Form/IncomeForm'
 import { useEffect } from 'react'
 import Item from '../Item/Item'
 import ExpenseForm from '../Form/ExpenseForm'

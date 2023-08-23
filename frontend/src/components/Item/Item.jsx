@@ -23,6 +23,7 @@ import {
 } from '../../utils/Icons'
 
 import Button from '../Button/Button'
+import { dateFormat } from '../../utils/dateFormat'
 
 export default function Item({
   id,
@@ -92,7 +93,7 @@ export default function Item({
               {dollar} {amount}
             </p>
             <p>
-              {calender} {date}
+              {calender} {dateFormat(date)}
             </p>
             <p>
               {comment} {description}
