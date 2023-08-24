@@ -27,12 +27,11 @@ ChartJs.register(
 
 export default function Chart() {
   const { incomes, expenses } = useGlobalContext()
-  console.log({ incomes })
-  console.log({ expenses })
+  const label = incomes.length < expenses.length ? expenses : incomes
 
   const data = {
-    labels: incomes.map((inc) => {
-      const { date } = inc
+    labels: label.map((l) => {
+      const { date } = l
       return dateFormat(date)
     }),
     datasets: [
