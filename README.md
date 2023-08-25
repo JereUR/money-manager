@@ -12,7 +12,7 @@
   <a href="#características">Características</a> •
   <a href="#tecnologías">Tecnologías</a> •
   <a href="#instalación">Instalación</a> •
-  <a href="#creación-de-un-clúster-en-mongodb">Creación de un Clúster en MongoDB</a>
+  <a href="#creación-de-un-clúster-en-mongodb">Creación de un Clúster en MongoDB</a> •
   <a href="#uso">Uso</a> •
   <a href="#nota">Nota</a> •
 </p>
