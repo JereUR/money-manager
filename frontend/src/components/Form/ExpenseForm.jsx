@@ -17,9 +17,9 @@ const initialData = {
 }
 
 export default function ExpenseForm() {
-  const { addExpense, getExpenses } = useGlobalContext()
+  const { addExpense, getExpenses, error, setError } = useGlobalContext()
   const [inputState, setInputState] = useState(initialData)
-  const [error, setError] = useState({})
+  const [errorForm, setErrorForm] = useState({})
 
   const { title, amount, date, category, description } = inputState
 
@@ -71,18 +71,20 @@ export default function ExpenseForm() {
     e.preventDefault()
 
     const err = validation()
-    setError(err)
+    setErrorForm(err)
 
     if (Object.keys(err).length === 0) {
       addExpense(inputState)
       setInputState(initialData)
       getExpenses()
-      setError({})
+      setErrorForm({})
+      setError('')
     }
   }
 
   return (
     <ExpenseFormStyled onSubmit={handleSubmit}>
+      {error && <p className="error">{error}</p>}
       <div className="input-control">
         <input
           type="text"
@@ -91,7 +93,7 @@ export default function ExpenseForm() {
           placeholder="Nombre del Gasto"
           onChange={handleInput('title')}
         />
-        {error.title && <span>{error.title}</span>}
+        {errorForm.title && <span>{errorForm.title}</span>}
       </div>
       <div className="input-control">
         <input
@@ -101,7 +103,7 @@ export default function ExpenseForm() {
           placeholder="Total del Gasto"
           onChange={handleInput('amount')}
         />
-        {error.amount && <span>{error.amount}</span>}
+        {errorForm.amount && <span>{errorForm.amount}</span>}
       </div>
       <div className="input-control">
         <DatePicker
@@ -114,7 +116,7 @@ export default function ExpenseForm() {
             setInputState({ ...inputState, date: date })
           }}
         />
-        {error.date && <span>{error.date}</span>}
+        {errorForm.date && <span>{errorForm.date}</span>}
       </div>
       <div className="selects input-control">
         <select
@@ -135,7 +137,7 @@ export default function ExpenseForm() {
           <option value="travelling">Viajes</option>
           <option value="other">Otros</option>
         </select>
-        {error.category && <span>{error.category}</span>}
+        {errorForm.category && <span>{errorForm.category}</span>}
       </div>
       <div className="input-control">
         <textarea
@@ -147,7 +149,7 @@ export default function ExpenseForm() {
           rows="4"
           onChange={handleInput('description')}
         ></textarea>
-        {error.description && <span>{error.description}</span>}
+        {errorForm.description && <span>{errorForm.description}</span>}
       </div>
       <div className="submit-btn">
         <Button
@@ -180,6 +182,13 @@ const ExpenseFormStyled = styled.form`
   flex-direction: column;
   gap: 2rem;
   margin-top: 2rem;
+
+  .error {
+    font-size: 14px;
+    margin-left: 1rem;
+    color: var(--color-delete);
+    animation: ${shake} 0.6s;
+  }
 
   input,
   textarea,
