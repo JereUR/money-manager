@@ -31,6 +31,12 @@
 - **Clonar Repositorio**
 - **Instalar Node.js:** Este proyecto requiere tener **Node.js** instalado. Node.js es un entorno de ejecución de JavaScript que te permite ejecutar scripts del lado del servidor y construir aplicaciones web escalables. Sigue los pasos a continuación para instalar **Node.js** en tu sistema:
 
+<p align="center">
+  <a href="#paso1">Paso 1</a> •
+  <a href="#paso2">Paso 2</a> •
+  <a href="#paso3">Paso 3</a> •
+</p>
+
 ## Paso 1: Comprobar si Node.js ya está instalado
 
 Antes de instalar **Node.js**, es una buena idea verificar si ya está instalado en tu sistema. Abre tu terminal y ejecuta el siguiente comando:
