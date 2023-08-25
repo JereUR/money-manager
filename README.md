@@ -12,6 +12,9 @@
   <a href="#características">Características</a> •
   <a href="#tecnologías">Tecnologías</a> •
   <a href="#instalación">Instalación</a> •
+  <a href="#creación-de-un-clúster-en-mongodb">Creación de un Clúster en MongoDB</a>
+  <a href="#uso">Uso</a> •
+  <a href="#nota">Nota</a> •
 </p>
 
 ## Características
@@ -88,3 +91,84 @@ npm -v
 Deberías ver las versiones de Node.js y npm impresas en la terminal.
 
 ¡Listo! Ahora tienes Node.js instalado en tu sistema y estás listo para trabajar en este proyecto.
+
+## Creación de un Clúster en MongoDB
+
+Un clúster en MongoDB es un conjunto de servidores interconectados que trabajan juntos para almacenar y gestionar los datos de tu aplicación. A continuación, se detallan los pasos básicos para crear un clúster en MongoDB utilizando MongoDB Atlas, el servicio de base de datos en la nube de MongoDB:
+
+1. **Registro y Acceso a MongoDB Atlas:**
+
+   - Ve al sitio web de [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) y regístrate o inicia sesión en tu cuenta.
+   - Crea un nuevo proyecto o selecciona uno existente.
+
+2. **Creación de un Nuevo Clúster:**
+
+   - En la página del proyecto, ve a "Database Clusters" (Clústeres de bases de datos) y haz clic en el botón "Build a Cluster" (Crear un clúster).
+   - Selecciona la nube y la región donde deseas alojar tu clúster.
+
+3. **Configuración del Clúster:**
+
+   - Elige las opciones de configuración, como el proveedor de nube, la región, el tipo de máquina y el número de réplicas. Puedes empezar con una configuración básica y luego ajustarla según tus necesidades.
+
+4. **Opciones Avanzadas (opcional):**
+
+   - Puedes personalizar aún más la configuración del clúster, como habilitar la replicación multi-región o la habilitación de discos cifrados.
+
+5. **Configuración de Acceso:**
+
+   - Configura las reglas de acceso para permitir conexiones desde direcciones IP específicas o desde cualquier dirección (no recomendado para entornos de producción). También puedes configurar usuarios y contraseñas para el acceso a la base de datos.
+
+6. **Crear el Clúster:**
+
+   - Una vez configurado todo, haz clic en "Create Cluster" (Crear clúster) para iniciar el proceso de creación.
+
+7. **Espera y Verificación:**
+
+   - El proceso de creación del clúster puede llevar unos minutos. Una vez creado, podrás ver el estado del clúster en la página de MongoDB Atlas.
+
+8. **Conexión a la Base de Datos:**
+   - Desde la página del clúster, puedes obtener la cadena de conexión que necesitas para conectar tu aplicación a la base de datos MongoDB.
+
+¡Listo! Has creado un clúster en MongoDB utilizando MongoDB Atlas. Recuerda que MongoDB Atlas proporciona una interfaz de usuario intuitiva para administrar y monitorizar tu clúster, además de herramientas para respaldos automáticos y escalado horizontal, entre otras características útiles.
+
+## Uso
+
+1. **Setear variables de entorno**
+
+   - Tanto en la carpeta backend, como en la carpeta frontend, hay un archivo .env-template el cual debe renombrar (En el caso de backend por .env y en el caso de frontend por .env.local). Para el .env de backend debe setear la variable MONGO_URL por la de la url provista por tu cluster de MongoDB.
+
+2. **Instalar dependencias**
+
+   - En ambas carpetas (/backend y /frontend) ejecutar:
+
+   ```sh
+   npm install
+   ```
+
+   para instalar las dependencias presentes en el archivo **package.json** de cada carpeta
+
+3. **Levantar servidor (backend)**
+
+   - Abrir una nueva terminal y posicionarse en **/backend** y ejecutar:
+
+   ```sh
+   npm run start
+   ```
+
+   esperar que en la terminal se divise
+   **Listening to port: 5000**
+   **DB Connected**
+
+4. **Levantar web (frontend)**
+
+   - Abrir una nueva terminal y posicionarse en **/frontend** y ejecutar:
+
+   ```sh
+   npm run dev
+   ```
+
+   Ingresar en su navegador a **http://localhost:5173/** y disfrute de la app.
+
+## Nota
+
+No esta desarrollado el manejo de usuarios, por lo que los datos serán propios de la base de datos de MongoDB propia
