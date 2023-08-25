@@ -5,6 +5,10 @@
 </p>
 
 <p align="center">
+  <img src="./frontend/public/project-money-manager.png" alt="Deploy app" width="500"/>
+</p>
+
+<p align="center">
   <strong>Una herramienta de gestión financiera</strong>
 </p>
 
