@@ -23,8 +23,11 @@ export default function Dashboard() {
     getExpenses()
   }, [])
 
+  const colorbalance =
+    totalBalance() > 0 ? 'var(--color-green)' : 'var(--color-delete)'
+
   return (
-    <DashboardStyled>
+    <DashboardStyled colorbalance={colorbalance}>
       <InnerLayout>
         <h1>Todas las Transacciones</h1>
         <div className="stats-con">
@@ -45,7 +48,7 @@ export default function Dashboard() {
               </div>
               <div className="balance">
                 <h2>Balance Total</h2>
-                <p>
+                <p style={{}}>
                   {dollar} {totalBalance()}
                 </p>
               </div>
@@ -57,15 +60,31 @@ export default function Dashboard() {
               Min <span>Ingresos</span> Max
             </h2>
             <div className="salary-item">
-              <p>{Math.min(...incomes.map((item) => item.amount))}</p>
-              <p>{Math.max(...incomes.map((item) => item.amount))}</p>
+              <p>
+                {incomes.length > 0
+                  ? Math.min(...incomes.map((item) => item.amount))
+                  : '-'}
+              </p>
+              <p>
+                {incomes.length > 0
+                  ? Math.max(...incomes.map((item) => item.amount))
+                  : '-'}
+              </p>
             </div>
             <h2 className="salary-title">
               Min <span>Gastos</span> Max
             </h2>
             <div className="salary-item">
-              <p>{Math.min(...expenses.map((item) => item.amount))}</p>
-              <p>{Math.max(...expenses.map((item) => item.amount))}</p>
+              <p>
+                {expenses.length > 0
+                  ? Math.min(...expenses.map((item) => item.amount))
+                  : '-'}
+              </p>
+              <p>
+                {expenses.length > 0
+                  ? Math.max(...expenses.map((item) => item.amount))
+                  : '-'}
+              </p>
             </div>
           </div>
         </div>
@@ -118,7 +137,7 @@ const DashboardStyled = styled.div`
           align-items: center;
 
           p {
-            color: var(--color-green);
+            color: ${(props) => props.colorbalance};
             opacity: 0.6;
             font-size: 4.5rem;
           }
