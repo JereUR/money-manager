@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import avatar from '../../img/avatar.png'
+import avatar from '../../img/logo.png'
 import { menuItems } from '../../utils/menuItmes'
 import { signout } from '../../utils/Icons'
 
